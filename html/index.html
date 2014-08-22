@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: HTML</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>HTML</h1>
+          <h3>Return of the Frontend Engineers</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Advanced CSS</li>
+            <li>Advanced JavaScript</li>
+            <li>AngularJS</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Overview</li>
+            <li>The Basics</li>
+            <li>Semantic HTML</li>
+            <li>HTML5</li>
+            <li>Microformats / Schema.org</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/html">https://github.com/erudianart/ealunchandlearns/html</a></p>
+        </section>
+
+        <section>
+          <h2>HTML: An overview</h2>
+          <ul>
+            <li>
+              What is HTML (Hyper Text Markup Language):
+              <ul>
+                <li>It is a language that describes content of a web page.</li>
+              </ul>
+            </li>
+            <li>Why learn HTML?
+              <ul>
+                <li>Everything on the web requires HTML (Java Applets are DEAD and so is Flash)</li>
+              </ul>
+            </li>
+            <li>How do I write HTML:
+              <ul>
+                <li>A Text Editor &amp; Browser</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>HTML: The Basics</h1>
+        </section>
+
+        <section>
+          <h2>HTML: The Basics</h2>
+          <pre><code data-trim contenteditable>
+&lt;!-- The doctype indicates what DTD to use, 
+that is is considered valid HTML --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!-- All web pages must have a root HTML node --&gt;
+&lt;html lang="en"&gt;
+  &lt;!-- head tag provides meta information for the document 
+  and is not rendered --&gt;
+  &lt;head&gt;
+    &lt;!-- inside the head tag you can have meta information, 
+    such as keywords, description, etc --&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;!-- this is the title of the page, very important for seo, 
+    appears on the top of the browser --&gt;
+    &lt;title&gt;HTML: The Basics&lt;/title&gt;
+    &lt;!-- people often include scripts and stylesheets in the head --&gt;
+    &lt;link rel="stylesheet" href="css/style.css"&gt;
+    &lt;script src="js/scripts.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;!-- all content for the web page goes into the body --&gt;
+  &lt;body&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>         
+        </section>
+
+        <section>
+          <h2>Headers</h2>
+          <pre><code data-trim contenteditable>
+&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;
+          </code></pre>
+          <a href="samples.html#headers">take a look &raquo;</a>
+        </section>
+
+        <section>
+          <h2>Images</h2>
+          <pre><code data-trim contenteditable>
+&lt;img src="//path/to/image.jpg" alt="alternate text"&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Links</h2>
+          <pre><code data-trim contenteditable>
+&lt;a href="//www.google.com"&gt;Link To A Website&lt;/a&gt;
+          </code></pre>
+          <a href="samples.html#links">take a look &raquo;</a>
+        </section>
+
+        <section>
+          <h2>Lists</h2>
+          <pre><code data-trim contenteditable>
+&lt;!-- an unordered list of items --&gt;
+&lt;ul&gt;
+  &lt;!-- a list item --&gt;
+  &lt;li&gt;
+    &lt;!-- list item content goes here! --&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+&lt;!-- an ordered list of items --&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ol&gt;
+          </code></pre>
+          <a href="samples.html#lists">take a look &raquo;</a>
+        </section>
+
+        <section>
+          <h2>Tables</h2>
+          <p>Tables are meant for tabular data, not for layout.</p>
+          <pre><code data-trim contenteditable>
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Column 1 Heading&lt;/th&gt;
+      &lt;th&gt;Column 2 Heading&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Column 1 Data&lt;/td&gt;
+      &lt;td&gt;Column 2 Data&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Column 1 Data&lt;/td&gt;
+      &lt;td&gt;Column 2 Data&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+          </code></pre>
+          <a href="samples.html#tables">take a look &raquo;</a>
+        </section>
+
+        <section>
+          <h2>Content</h2>
+          <pre><code data-trim contenteditable>
+&lt;p&gt;Content goes here!&lt;/p&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Containers</h2>
+          <pre><code data-trim contenteditable>        
+&lt;div&gt;This is a block level generic container for grouping things&lt;/div&gt;
+&lt;span&gt;This is an inline level generic container for grouping things&lt;/span&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Forms</h2>
+          <pre><code data-trim contenteditable>
+&lt;form method="post" action="some/endpoint.php"&gt;
+  &lt;label for="name"&gt;Name&lt;/label&gt;
+  &lt;input type="text" name="name" id="name" value=""&gt;
+  &lt;label for="password"&gt;Password&lt;/label&gt;
+  &lt;input type="password" name="password" id="password" value=""&gt;
+  &lt;h2&gt;Favorite Pizza&lt;/h2&gt;
+  &lt;label for="pepperoni"&gt;Pepperoni&lt;/label&gt;
+  &lt;input type="radio" value="pepperoni" name="pizza" id="pepperoni"&gt;
+  &lt;label for="cheese"&gt;Cheese&lt;/label&gt;
+  &lt;input type="radio" value="cheese" name="pizza" id="cheese"&gt;
+  &lt;h2&gt;Music Genres&lt;/h2&gt;
+  &lt;label for="rap"&gt;Rap&lt;/label&gt;
+  &lt;input type="checkbox" value="rap" name="rap" id="rap"&gt;
+  &lt;label for="rock"&gt;Rock&lt;/label&gt;
+  &lt;input type="checkbox" value="rock" name="rock" id="rock"&gt;
+  &lt;label for="bio"&gt;Bio&lt;/label&gt;
+  &lt;textarea name="bio" id="bio"&gt;&lt;/textarea&gt;
+  &lt;input type="submit" value="Create New Profile"&gt;
+&lt;/form&gt;
+          </code></pre>
+          <a href="samples.html#forms">take a look &raquo;</a>
+        </section>
+
+        <section>
+          <h1>Semantic HTML</h1>
+        </section>
+
+        <section>
+          <h2>Semantic HTML</h2>
+          <p>What is Semantic HTML?</p>
+        </section>
+
+        <section>
+          <h2>Semantic HTML</h2>
+          <p>What is wrong with this markup?</p>
+          <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;div&gt;Electronic Arts Posts A Record Quarter&lt;/div&gt;
+  &lt;div&gt;All thanks to Origin&lt;/div&gt;
+  &lt;div&gt;With the launch of great programs such as on the house, 
+  as well as several blockbusters ...&lt;/div&gt;
+  &lt;img src="titanfall.jpg" alt=""&gt;
+  &lt;div&gt;Games Coming Next Fall:&lt;/div&gt;
+  &lt;div&gt;- Titanfall 2&lt;/div&gt;
+  &lt;div&gt;- Battlefield x++&lt;/div&gt;
+  &lt;div&gt;- Fifa date(Y)&lt;/div&gt;
+&lt;/body&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>A Little Better</h2>
+          <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;h1&gt;Electronic Arts Posts A Record Quarter&lt;/h1&gt;
+  &lt;div&gt;All thanks to Origin&lt;/div&gt;
+  &lt;p&gt;With the launch of great programs such as on the house, 
+  as well as several blockbusters ...&lt;/p&gt;
+  &lt;img src="titanfall.jpg" alt=""&gt;
+  &lt;h2&gt;Games Coming Next Fall:&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Titanfall 2&lt;/li&gt;
+    &lt;li&gt;Battlefield x++&lt;/li&gt;
+    &lt;li&gt;Fifa date(Y)&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Semantic Navs</h2>
+          <p>Almost all navigations are in the following format.</p>
+          <pre><code data-trim contenteditable>
+&lt;div&gt; &lt;!-- div just for a wrapper --&gt;
+  &lt;ul&gt; &lt;!-- a nav is really a list of links --&gt;
+    &lt;li&gt;&lt;a href='#'&gt;Link 1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href='#'&gt;Link 2&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Semantic Headers</h2>
+          <p>Be careful of what you decide is an header.  Just because something should appear visually big, does not mean it is a heading.  You should be able to look at your list of headers and get an overview of the document.</p>
+          <pre><code data-trim contenteditable>
+&lt;h1&gt;Electronic Arts Posts a Record Quarter&lt;/h1&gt;
+&lt;div&gt;All thanks to origin&lt;/div&gt;
+          </pre></code>
+        </section>
+
+        <section>
+          <h2>Images</h2>
+          <p>A browser can't read images.  Text baked into images = bad.  Image tags without alt text = bad.</p>
+        </section>
+
+        <section>
+          <h1>HTML5</h1>
+        </section>
+
+        <section>
+          <h2>What is HTML5?</h2>
+          <img src="http://www.html5rocks.com//static/images/mastheads/h5r-shadow.png" alt="HTML5 Rocks">
+        </section>
+
+        <section>
+          <h2>New HTML5 Tags</h2>
+          <ul>
+            <li>&lt;header&gt;&lt;/header&gt;</li>
+            <li>&lt;footer&gt;&lt;/footer&gt;</li>
+            <li>&lt;main&gt;&lt;/main&gt;</li>
+            <li>&lt;nav&gt;&lt;/nav&gt;</li>
+            <li>&lt;section&gt;&lt;/section&gt;</li>
+            <li>&lt;article&gt;&lt;/article&gt;</li>
+            <li>&lt;figure&gt;&lt;/figure&gt;</li>
+            <li>&lt;figcaption&gt;&lt;/figcaption&gt;</li>
+            <li>&lt;time&gt;&lt;/time&gt;</li>
+            <li>&lt;video&gt;&lt;/video&gt;</li>
+            <li>&lt;audio&gt;&lt;/audio&gt;</li>
+            <li>More here: <a href="http://html5doctor.com/">html5 doctor</a></li>
+        </section>
+
+        <section>
+          <h2>How would we change this?</h2>
+          <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;div&gt;Electronic Arts Posts A Record Quarter&lt;/div&gt;
+  &lt;div&gt;All thanks to Origin&lt;/div&gt;
+  &lt;div&gt;With the launch of great programs such as on the house, 
+  as well as several blockbusters ...&lt;/div&gt;
+  &lt;img src="titanfall.jpg" alt=""&gt;
+  &lt;div&gt;Games Coming Next Fall:&lt;/div&gt;
+  &lt;div&gt;- Titanfall 2&lt;/div&gt;
+  &lt;div&gt;- Battlefield x++&lt;/div&gt;
+  &lt;div&gt;- Fifa date(Y)&lt;/div&gt;
+&lt;/body&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Audio</h2>
+          <pre><code data-trim contenteditable>
+&lt;audio src="music.oga" controls&gt;
+  &lt;a href="music.oga"&gt;Download song&lt;/a&gt;
+&lt;/audio&gt;
+          </code></pre>
+          <h4>Browser Support</h4>
+          <ul>
+            <li>Chrome 3+ supports .ogg and .wav</li>
+            <li>Firefox 3.5+ supports .ogg and .wav</li>
+            <li>Opera 10.5+ supports .ogg and .wav</li>
+            <li>Safari 4+ supports .mp3 and .wav</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Video</h2>
+          <pre><code data-trim contenteditable>
+&lt;video src="video.ogv" controls poster="poster.jpg" width="320" height="240"&gt;
+  &lt;a href="video.ogv"&gt;Download song&lt;/a&gt;
+&lt;/video&gt;
+          </code></pre>
+          <h4>Browser Support</h4>
+          <ul>
+            <li>MP4: Chrome, IE, Safari, iOS</li>
+            <li>ogg: Chrome, Firefox, Opera</li>
+            <li>WebM: Chrome, Firefox, IE, Opera</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Schema.org</h1>
+        </section>
+
+        <section>
+          <h2>Schema.org</h2>
+          <p>Schema.org defines a set of entities that you can define in your markup to give search engines more information about the content on your website.</p>
+        </section>
+
+        <section>
+          <h2>Help Ye Browsers</h2>
+          <pre><code data-trim contenteditable>
+&lt;div class="product-info" itemscope="" itemtype="http://schema.org/Product"&gt;
+  &lt;h1 class="product-heading" itemprop="name"&gt;Essential Charcoal Suit&lt;/h1&gt;
+  &lt;div class="product-price" itemprop="offers" itemscope="" itemtype="http://schema.org/Offer"&gt;
+    &lt;span itemprop="price"&gt;$449&lt;/span&gt;
+  &lt;/div&gt;
+  &lt;link itemprop="image" href="productimage.jpg"&gt;
+  &lt;link itemprop="url" href="/product/essential-charcoal-suit"&gt;
+  &lt;p class="product-short-desc" itemprop="description"&gt;
+    The perfect everyday suit. Timeless, wearable and versatile 
+    for any occasion.&lt;/p&gt;
+&lt;/div>
+          </code></pre>
+          <p><a href="https://www.google.com/webmasters/tools/richsnippets?q=http%3A%2F%2Fwww.indochino.com%2Fproduct%2Fessential-charcoal-suit">What Does Google See?</a></p>
+        </section>
+
+        <section>
+          <h2>Schema.org</h2>
+          <p>Checkout a full list of Schema's at <a href="http://schema.org/docs/schemas.html">schema.org</a></p>
+        </section>
+
+
+        <section>
+          <h2>Assignment</h2>
+          <p>Write the markup for the design that follows using all of your knowledge of HTML and schema.org and submit it to me at <a href="mailto:preetj@ea.com">preetj@ea.com</a></p>
+          <ul>
+            <li><a href="images/indochino1.png">Image 1</a></li>
+            <li><a href="images/indochino2.png">Image 2</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
