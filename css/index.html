@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: CSS</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>CSS</h1>
+          <h3>Putting Lipstick on a Pig</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Advanced CSS</li>
+            <li>Advanced JavaScript</li>
+            <li>Performance Optimizations</li>
+            <li>AngularJS</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Overview</li>
+            <li>The Basics</li>
+            <li>Inheritance</li>
+            <li>The Cascade</li>
+            <li>Specificity</li>
+            <li>Specific Rules</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/css">https://github.com/erudianart/ealunchandlearns/css</a></p>
+        </section>
+
+        <section>
+          <h2>CSS: An overview</h2>
+          <ul>
+            <li>
+              What is CSS (Cascading Style Sheets):
+              <ul>
+                <li>It is a language that describes how the content of a document should be presented to the user.</li>
+              </ul>
+            </li>
+            <li>Why learn CSS?
+              <ul>
+                <li>Because you can do stuff like <a href='http://www.indochino.com/Shirts'>this</a> and <a href='http://www.indochino.com/collection/modern-dandy-collection'>this</a></li>
+              </ul>
+            </li>
+            <li>How do I write CSS:
+              <ul>
+                <li>A text editor, a document linking to the CSS file (HTML document), &amp; a browser</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>CSS: The Basics</h1>
+        </section>
+
+        <section>
+          <h2>How to add css to your website</h2>
+          <pre><code data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-US" dir="ltr"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="styles.css"&gt;
+&lt;/head&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>styles.css</h2>
+          <pre><code data-trim contenteditable>
+body {
+  background: #ebebeb;
+  font:normal 12px Helvetica, sans-serif;
+  color:#808080;
+}
+
+#main {
+  margin:1em;
+  padding:0.5em;
+  border:1px solid #ccc;
+}
+
+p {
+  margin-bottom:1em;
+}
+
+a {
+  text-decoration:none;
+}
+
+.page-heading,
+h1 {
+  font-size:16px;
+  font-weight:300;
+}
+          </code></pre>         
+        </section>
+
+        <section>
+          <h2>CSS: The Basics</h2>
+          <pre><code data-trim contenteditable>
+selector {
+  property: value;
+  property2: value;  
+  /* end of declaration */
+}
+          </code></pre>         
+        </section>      
+
+        <section>
+          <h2>Selectors</h2>
+          <p>Selectors tell you what element to apply the styles to.</p>
+          <h3>Types of Selectors</h3>
+          <ul>
+            <li>Tag Name: <code>span</code></li>
+            <li>Class Name: <code>.myfigure</code></li>
+            <li>ID: <code>#main</code></li>
+            <li>Attribute: <code>[data-status=active]</code></li>
+            <li>others...</li>
+          </ul>
+        </section>  
+
+        <section>
+          <h2>Selectors</h2>
+          <p>A declaration can apply to multiple selectors. The selectors must be seperated by a comma.</p>
+          <pre><code data-trim contenteditable>
+selector1,
+selector2 {
+  property: value;
+  property2: value;  
+  /* end of declaration */
+}
+          </code></pre>         
+        </section>
+
+        <section>
+          <h2>Selectors</h2>
+          <p>You can combine selectors to make a more specific selector.  Each selector must be seperated by a space. For instance, suppose we want to target all links inside of elements with the class name myfigure.</p>
+          <pre><code data-trim contenteditable>
+.myfigure a {
+  font-size:300000px;
+}
+          </code></pre>         
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+        </section>
+
+        <section>
+          <h2>Inheritance</h2>
+          <pre><code data-trim contenteditable>
+&lt;p&gt;This is a paragraph with a &lt;a href='#'&gt;link&lt;/a&gt;&lt;/p&gt;
+          </code></pre> 
+          <pre><code data-trim contenteditable>
+p {
+  font-size:16px;
+}
+          </code></pre>
+          <p>What will the font size of the link be?</p>
+        </section>
+
+        <section>
+          <h2>Inheritance</h2>
+          <p>Certain properties are inherated from an element's parent.  For instance, font size, is inherited, whereas margin is not.</p>
+        </section>
+
+        <section>
+          <h1>The Cascade</h1>
+        </section>
+
+        <section>
+          <h2>The Cascade</h2>
+          <p>The three main sources of style information form a cascade:</p>
+          <ol>
+            <li>Browser Styles</li>
+            <li>User Styles</li>
+            <li>Author Styles</li>
+          </ol>
+          <p>Where the Author Styles cascades over the User Styles which cascade over the Browser Styles.</p> 
+        </section>
+
+        <section>
+          <h2>The Cascade</h2>
+          <pre><code data-trim contenteditable>
+/* 
+the default color of a link is blue. That is defined by the browser default 
+styles.  Our author style will cascade over the browser default style.
+*/
+a {
+  color:#808080;
+}
+          </code></pre> 
+        </section>
+
+        <section>
+          <h1>Specificity</h1>
+        </section>
+
+        <section>
+          <h2>Specificity</h2>
+          <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;p id="red" class="blue" style="color:green"&gt;orange&lt;/p&gt;
+&lt;/body&gt;
+          </code></pre> 
+          <pre><code data-trim contenteditable>
+body { color: black; }
+p { color: white; }
+#red { color: red; }
+.blue { color: blue; }
+          </code></pre>
+          <p>What is the color of orange?</p>
+        </section>
+
+        <section>
+          <h2>Specificity</h2>
+          <p>Certain selectors are said to be more <em>specific</em> than other selectors.  The declaration block that belongs to the most specific selector on an element is the one that takes precedence</p>
+        </section>
+
+        <section>
+          <h2>Order of Specificity</h2>
+          <ol>
+            <li>Inline Styles <code><pre>style="color:red"</pre></code></li>
+            <li>ID <code><pre>#red {}</pre></code></li>
+            <li>Class name, Attribute, Pseudo Class <code><pre>.blue, [data-color=green], :first-child {}</pre></code></li>
+            <li>Tag Name <code><pre>div {}</pre></code></li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Notes on Specificity</h2>
+          <p>Thou Shall Not Use !important.</p>
+        </section>
+
+        <section>
+          <h2>Specificity</h2>
+          <pre><code data-trim contenteditable>
+&lt;body&gt;
+  &lt;p id="red" class="blue" style="color:green"&gt;orange&lt;/p&gt;
+&lt;/body&gt;
+          </code></pre> 
+          <pre><code data-trim contenteditable>
+body { color: black; }
+p { color: white; }
+#red { color: red; }
+.blue { color: blue; }
+          </code></pre>
+          <p>What is the color of orange?</p>
+        </section>
+
+        <section>
+          <h1>Specifics</h1>
+        </section>
+
+        <section>
+          <h2>display:</h2>
+          <ul>
+            <li>none;</li>
+            <li>inline;</li>
+            <li>block;</li>
+            <li>inline-block;</li>
+            <li>others...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>position:</h2>
+          <ul>
+            <li>absolute;</li>
+            <li>relative;</li>
+            <li>static;</li>
+            <li>others...</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The Box Model</h2>
+          <h3>width/padding/border/margin</h3>
+          <p>Specify values with px, em, %</p>
+          <img src='https://developer.mozilla.org/files/72/boxmodel%20(1).png'>
+        </section>
+
+        <section>
+          <h2>float:left;</h2>
+          <p>Removes element from the normal flow and places along the left or right side of its container</p>
+        </section>
+
+        <section>
+          <h2>Others</h2>
+          <p>See <a href='https://developer.mozilla.org/en-US/docs/Web/CSS/Reference'>Mozilla Developer Network</a> for a list of all properties and their values.</p>
+        </section>
+
+        <section>
+          <h2>Assignment</h2>
+          <p>Write the css for the design that follows using all of your knowledge of HTML, schema.org and CSS and submit it to me at <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></p>
+          <ul>
+            <li><a href="images/indochino1.png">Image 1</a></li>
+            <li><a href="images/indochino2.png">Image 2</a></li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

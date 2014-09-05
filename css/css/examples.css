@@ -1,0 +1,87 @@
+body {
+	font-family:"Open Sans", Helvetica, sans-serif;
+	color:#444;
+}
+
+section {
+	margin-bottom:150px;
+}
+
+
+h2 {
+	font-weight:300;
+}
+
+/* display section */
+
+.section-display-inline {
+	color:red;
+}
+
+.section-display-inline-block {
+	display:inline-block;
+	color:pink;
+}
+
+.section-display-block {
+	color:blue;
+}
+
+.section-display-none {
+	display:none;
+}
+
+/* position section */
+.section-position-relative {
+	position:relative;
+	top:25px;
+	left:25px;
+	width:100px;
+	height:100px;
+	background:#ebebeb;
+}
+
+.section-position-absolute {
+	position:absolute;
+	top:-25px;
+	left:50px;
+	width:125px;
+	height:125px;
+	background:#ccc;
+}
+
+
+/* box model */
+.section-box {
+	width:100px;
+	height:100px;
+	background:#ccc;
+	/*padding: 100px;*/
+	/*border: 5px solid #000; */
+	/*margin: 100px;*/
+	/*box-sizing:border-box;*/
+}
+
+
+.section-floats-container {
+	position:relative;
+	background:#29abe2;
+	left:100px;
+	top:100px;
+	width:300px;
+}
+
+.section-float-box-left,
+.section-float-box-right {
+	width:50px;
+	height:50px;
+	background:#ccc;
+}
+
+.section-float-box-left {
+	float:left;
+}
+
+.section-float-box-right {
+	float:right;
+}
