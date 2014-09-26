@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: Javascript</title>
+
+    <meta name="description" content="Origin Lunch And Learn about JavaScript">
+    <meta name="author" content="Preet Jassi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>JavaScript</h1>
+          <h3>The First Parts</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Advanced CSS</li>
+            <li>Advanced JavaScript</li>
+            <li>Performance Optimizations</li>
+            <li>AngularJS</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Overview</li>
+            <li>The Basics</li>
+            <li>Objects</li>
+            <li>Functions</li>
+            <li>Constructor Functions</li>
+            <li>This</li>
+            <li>Inheritance</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/css">https://github.com/erudianart/ealunchandlearns/javascript</a></p>
+        </section>
+
+        <section>
+          <h2>JavaScript: An overview</h2>
+          <ul>
+            <li>
+              What is JavaScript:
+              <ul>
+                <li>It is the scripting language of web pages*.  It gives the website dynamicism and behaviour.</li>
+              </ul>
+            </li>
+            <li>Why learn JavaScript?
+              <ul>
+                <li>Because you can do stuff like <a href='http://www.ro.me'>this</a></li>
+              </ul>
+            </li>
+            <li>How do I write JavaScript:
+              <ul>
+                <li>A text editor, a document linking to the JavaScript file, &amp; a browser</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>JavaScript: The Basics</h1>
+        </section>
+
+        <section>
+          <h2>How to add JavaScript to your website</h2>
+          <pre><code data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-US" dir="ltr"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+  &lt;link rel="stylesheet" type="text/css" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>script.js</h2>
+          <pre><code data-trim contenteditable>
+var numPizzas = 9;
+var numAttendants = 30;
+
+function determineMaxSlicesPerAttendant(pizzas, attendants) {
+  var slices_per_pizza = 12;
+  return Math.ceil(pizzas * slices_per_pizza / attendants);
+}
+
+alert(determineMaxSlicesPerAttendant(
+  numPizzas,
+  numAttendants
+));
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Syntax</h1>
+        </section>
+
+        <section>
+          <h2>Variables and Types</h2>
+          <pre><code data-trim contenteditable>
+var myNum1 = 2 * 2 / 2 % 2 ^ 2;
+var myNum2 = 2.3;
+var myStr = 'asdf' + 'jkl';
+var myBool = false;
+var myArr = [2, 2, 3, 4, 5, 6];
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Loops</h2>
+          <pre><code data-trim contenteditable>
+var myArr = [2, 5, 6, 8, 4, 2, 6, 8];
+var sum = 0;
+for (var i=0; i &lt; myArr.length; i++) {
+  sum += myArr[i];
+}
+while (condition) {
+  // do stuff here
+}
+do {
+  // stuff
+} while (condition);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Conditional Statements</h2>
+          <pre><code data-trim contenteditable>
+if (condition) {
+  // do stuff
+} else if (condition) {
+  // do other stuff
+} else {
+  // do some other stuff
+}
+
+switch (condition) {
+  case 'someThing':
+    // do something
+    break;
+  case 'someThingElse':
+  case 'someThingMore':
+    // this falls through
+    break;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Objects</h1>
+        </section>
+
+        <section>
+          <h2>Objects</h2>
+          <p>If you are not a primitive type, you are an object. Objects in JavaScript are mutable keyed collections where the key can be any string, and a value can be any value in JavaScript except undefined.</p>
+        </section>
+
+        <section>
+          <h2>Objects</h2>
+          <pre><code data-trim contenteditable>
+var obj1 = new Object();
+obj.keyA = {
+  'keyAA': 0,
+  'keyAB': 'asfd'
+};
+obj1['keyB'] = 'valA';
+obj.keyA; // this is an object
+obj['keyB']; // this is 'valA'
+obj.keyC; // this will be undefined
+// delete
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Objects</h2>
+          <p>How do you get the key value pairs in an object?</p>
+          <pre><code data-trim contenteditable>
+var person = {
+  'lastName': 'Jassi',
+  'firstName': 'Preet',
+  'age': 19
+};
+for (var myKey in person) {
+  person[myKey] = myKey;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Functions</h1>
+        </section>
+
+        <section>
+          <h2>Functions</h2>
+          <pre><code data-trim contenteditable>
+function myFunk(arg1, arg2) {
+  return arg1 + arg2;
+}
+myFunk(1, 2);
+
+var adder = function(arg1, arg2) {
+  return arg1 + arg2;
+};
+adder(3, 4);
+
+// functions are objects
+// functions have hidden links to the context
+// what happens when you don't return a value? you return undefined.  what about return; ?
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Functions</h2>
+          <p>Functions are objects, so they can be used like any other value. They can be stored in variables, objects, arrays, passed as arguments and returned from functions.</p>
+        </section>
+
+        <section>
+          <h2>Functions</h2>
+          <pre><code data-trim contenteditable>
+var callbacks = [function() {}, function() {}];
+var myObj = {
+  myMethod: function(a, b) {}
+};
+
+function on(eventName, callback) {
+  var map[eventName] = callback;
+}
+on('click', function() {});
+
+function returnFunc(a, b) {
+  return function() {};
+}
+
+var adder = returnFunc(2, 3);
+adder(); // does something
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Arguments</h2>
+          <p>You can pass in a variable number of arguments to a function, how do you get them all?</p>
+          <pre><code data-trim contenteditable>
+function sum() {
+  var sum = 0;
+  for (var i=0; i &lt; arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Functional Scoping</h2>
+          <p>JavaScript has functional scoping vs block scoping. Variables defined within a function, are accessible anywhere in that function, but are not accessible outside of that function.</p>
+        </section>
+
+        <section>
+          <h2>Functional Scoping</h2>
+          <pre><code data-trim contenteditable>
+function myFunk() {
+  var a = 2;
+  function innerFunk() {
+    a += 2;
+  }
+  console.log(a); // 2
+  innerFunk();
+  console.log(a); // 4
+}
+console.log(a); // undefined
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>What About?</h2>
+          <pre><code data-trim contenteditable>
+function myFunk() {
+  var a = 2;
+  function innerFunk() {
+    var a = 4;
+  }
+  console.log(a); // 2
+  innerFunk();
+  console.log(a); // 2, why?
+}
+console.log(a); // undefined
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Closure</h2>
+          <p>A Closure in JavaScript is when a scope "survives" even after a function has executed.</p>
+        </section>
+
+        <section>
+          <h2>Closure</h2>
+          <pre><code data-trim contenteditable>
+var myAdder = (function() {
+  var count = 0;
+  return {
+    add: function(x) {
+      count += x;
+      return count;
+    }
+  }
+}());
+myAdder.count; // undefined
+myAdder.add(3); // 3
+myAdder.add(10); // 13
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Constructor Functions</h1>
+        </section>
+
+        <section>
+          <h2>Constructor Functions</h2>
+          <p>JavaScript does not have classes, but there is an object making syntax that looks similar to creating a class.</p>
+        </section>
+
+        <section>
+          <h2>Constructor Functions</h2>
+          <pre><code data-trim contenteditable>
+function Person(firstName, lastName) {
+  this.name = firstName + ' ' + lastName;
+}
+var preet = new Person('Preet', 'Jassi');
+preet.name; // 'Preet Jassi'
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Constructor Functions</h2>
+          <p>Using the new operator creates a new object and executes the constructor function. Anything that is bound using this in the constructor function is now bound to that new object.</p>
+        </section>
+
+        <section>
+          <h1>This</h1>
+        </section>
+
+        <section>
+          <h2>This</h2>
+          <p>This is a reserved keyword that refers to an object.  What that object is depends upon how the function is executed.</p>
+        </section>
+
+        <section>
+          <h2>As a method in an object</h2>
+          <pre><code data-trim contenteditable>
+var myObj = {
+  myVal: 20,
+  myMethod: function() {
+    return this.myVal;
+  }
+};
+myObj.myMethod(); //20
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>In a Constructor Function</h2>
+          <pre><code data-trim contenteditable>
+function Person() {
+  this.firstName = 'Preet';
+  this.greet = function() {
+    return 'Hello, ' + this.firstName;
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>In an invokable function</h2>
+          <pre><code data-trim contenteditable>
+function adder(a, b, c) {
+  this.val = a + b + c;
+}
+adder(1, 2, 3);
+alert(val); // 6
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Inheritance</h1>
+        </section>
+
+        <section>
+          <h2>Prototype Chain</h2>
+          <p>All objects have a hidden link, called a prototype, that links to other objects.  When you access a member on that object, it checks to see if it is defined on that object itself.  If it is not defined on that object, it looks at the object at the other end of that hidden link to see if it is defined there.  If the member is defined on the objects prototype, it is returned.</p>
+          <p>This is called the "prototype chain".</p>
+        </section>
+
+        <section>
+          <h2>Prototype</h2>
+          <pre><code data-trim contenteditable>
+function Person(firstName, lastName) {
+  this.name = firstName + ' ' + lastName;
+}
+var preet = new Person('Preet', 'Jassi');
+preet.name; // 'Preet Jassi'
+Person.prototype.salut = function() {
+  alert('Bonjour ' + this.name + '!');
+}
+var bob = new Person('Bob', 'Marley');
+bob.salut(); // this will alert Bonjour Bob Marley!
+preet.salut(); // this will alert Bonjour Preet Jassi!
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Inheritence</h2>
+          <p>JavaScript does not have inheritance, but we can do something clever with the prototype to inherit behaviour from one object to another.</p>
+        </section>
+        <section>
+          <h2>Prototype</h2>
+          <pre><code data-trim contenteditable>
+function Person() {
+  this.setName = function(firstName, lastName) {
+    this.name = firstName + ' ' + lastName;
+  };
+}
+function Female() {
+  this.gender = 'F';
+  Person.call(this);
+}
+Female.prototype = new Person();
+Female.prototype.constructor = Female;
+
+var mary = new Female();
+mary.setName('Mary', 'Ann');
+mary.name; // 'Mary Ann'
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Assignment</h2>
+          <p>Write quicksort and insertion sort in JavaScript and send it to me as .zip file to pjassi@ea.com</p>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
