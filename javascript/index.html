@@ -149,10 +149,13 @@ alert(determineMaxSlicesPerAttendant(
         <section>
           <h2>Variables and Types</h2>
           <pre><code data-trim contenteditable>
+// JavaScript is loosely typed.  This means that a variable
+// can take on any type at any time.
 var myNum1 = 2 * 2 / 2 % 2 ^ 2;
 var myNum2 = 2.3;
 var myStr = 'asdf' + 'jkl';
 var myBool = false;
+// Numbers, Booleans, and Strings are primitive types
 var myArr = [2, 2, 3, 4, 5, 6];
           </code></pre>
         </section>
@@ -185,13 +188,14 @@ if (condition) {
   // do some other stuff
 }
 
-switch (condition) {
+switch (variable) {
   case 'someThing':
     // do something
     break;
   case 'someThingElse':
   case 'someThingMore':
-    // this falls through
+    // this is executed if variable is equal
+    // to someThingElse or someThingMore
     break;
 }
           </code></pre>
@@ -209,16 +213,17 @@ switch (condition) {
         <section>
           <h2>Objects</h2>
           <pre><code data-trim contenteditable>
-var obj1 = new Object();
+var obj = new Object();
+// you should always create an object using this way
+// instead of using new Object()
 obj.keyA = {
   'keyAA': 0,
   'keyAB': 'asfd'
 };
-obj1['keyB'] = 'valA';
+obj['keyB'] = 'valA';
 obj.keyA; // this is an object
 obj['keyB']; // this is 'valA'
 obj.keyC; // this will be undefined
-// delete
           </code></pre>
         </section>
 
@@ -232,6 +237,8 @@ var person = {
   'age': 19
 };
 for (var myKey in person) {
+  //myKey will be lastName, firstName, age.
+  // Note that this will not be in order necessarily.
   person[myKey] = myKey;
 }
           </code></pre>
@@ -349,7 +356,7 @@ var myAdder = (function() {
       count += x;
       return count;
     }
-  }
+  };
 }());
 myAdder.count; // undefined
 myAdder.add(3); // 3
@@ -397,6 +404,7 @@ preet.name; // 'Preet Jassi'
 var myObj = {
   myVal: 20,
   myMethod: function() {
+    // this refers to myObj
     return this.myVal;
   }
 };
@@ -408,10 +416,12 @@ myObj.myMethod(); //20
           <h2>In a Constructor Function</h2>
           <pre><code data-trim contenteditable>
 function Person() {
+  // this refers to the object that is created when you
+  // use new Person().
   this.firstName = 'Preet';
   this.greet = function() {
     return 'Hello, ' + this.firstName;
-  }
+  };
 }
           </code></pre>
         </section>
@@ -420,6 +430,8 @@ function Person() {
           <h2>In an invokable function</h2>
           <pre><code data-trim contenteditable>
 function adder(a, b, c) {
+  // this refers to the GLOBAL scope (window)
+  // this is very important for later
   this.val = a + b + c;
 }
 adder(1, 2, 3);
@@ -458,6 +470,7 @@ preet.salut(); // this will alert Bonjour Preet Jassi!
           <h2>Inheritence</h2>
           <p>JavaScript does not have inheritance, but we can do something clever with the prototype to inherit behaviour from one object to another.</p>
         </section>
+
         <section>
           <h2>Prototype</h2>
           <pre><code data-trim contenteditable>
@@ -468,14 +481,68 @@ function Person() {
 }
 function Female() {
   this.gender = 'F';
+
+  //Note that we are not using new here, so this does not
+  //create and return a new object.  What this does is
+  //execute the person function.  The call method is an
+  //internal method that allows you to specify what "this"
+  //should equal to when a method executes, and it then executes the method.
+  //So what is happening here is that we are executing the Person
+  //constructor function as a regular function.  Remember that normally
+  //this would refer to the global scope, but using call we are able
+  //to override this and make this refer to the instance of Female
+  //that is created when we use new Female().  If the Person
+  //constructor function binds anything to this, like this.setName,
+  //using Person.call(this), we now bind setName to the instance of
+  //the Female that is created.
   Person.call(this);
 }
+
+// You link the prototype of Female to an object.  This object is
+// an instance of a Person.  This same instance is linked across ALL
+// instances of the Females that are created..
 Female.prototype = new Person();
+
+// This is so when you do instanceof mary, it returns Female instead of Person
 Female.prototype.constructor = Female;
 
 var mary = new Female();
 mary.setName('Mary', 'Ann');
 mary.name; // 'Mary Ann'
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Why do we need to use .call?</h2>
+          <pre><code data-trim contenteditable>
+function Person() {
+  this.name = {
+     'firstName': 'Bob',
+     'lastName': 'Marley'
+  };
+}
+
+function Musician() {
+  this.instrument = 'voice';
+}
+
+Musician.prototype = new Person();
+Musician.prototype.constructor = Musician;
+
+var rasta1 = new Musician();
+var rasta2 = new Musician();
+
+rasta1.name.firstName = 'Jonathan';
+console.log(rasta1.name.firstName); // Jonathan
+console.log(rasta2.name.firstName); // Jonathan
+
+// Why does rasta2.name.firstName equal to Jonathan?
+// We only modified rasta1, we should not modify rasta2.
+// It is because the name is stored on the prototype,
+// and the prototype object is shared across all instances
+// so what we need to do, is give each copy of Musician their own
+// copy of all the variables that are bound in Person.
+
           </code></pre>
         </section>
 
