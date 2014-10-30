@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: Enter The DOM</title>
+
+    <meta name="description" content="Origin Lunch And Learn about JavaScript">
+    <meta name="author" content="Preet Jassi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>JavaScript</h1>
+          <h3>Enter The DOM</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Enter The DOM</li>
+            <li>...</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>An Overview</li>
+            <li>Traversing</li>
+            <li>Adding / Removing</li>
+            <li>Modifying Attributes</li>
+            <li>Listening to Events</li>
+            <li>Event Bubbling</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/domandevents">https://github.com/erudianart/ealunchandlearns/domandevents</a></p>
+        </section>
+
+        <section>
+          <h2>What Is the DOM?</h2>
+          <p>The DOM is the programming API used to manipulate HTML and XML documents.</p>
+        </section>
+
+        <section>
+          <h1>DOM: An Overview</h1>
+        </section>
+
+        <section>
+          <h2>So What Happens?</h2>
+          <ul>
+            <li>Browser recieves HTML document</li>
+            <li>Browser parses it into both CCSOM and DOM tree</li>
+            <li>Browser combines both to create rendering tree</li>
+            <li>Browser displays rendering tree</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Sooo What Is The DOM Tree?</h2>
+          <pre><code data-trim contenteditable>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en-US" dir="ltr"&gt;
+&lt;head&gt;
+  &lt;meta charset="utf-8"&gt;
+  &lt;title&gt;My Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;I am in the DOM!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Sooo What Is The DOM Tree?</h2>
+          <img src='images/domtree.jpg' alt='' />
+        </section>
+
+        <section>
+          <h1>Traversing</h1>
+        </section>
+
+        <section>
+          <h2>Get Elements In The Tree</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('derp');
+var lis = document.getElementsByTagName('li');
+var boxes = document.getElementsByClassName('.my-boxes');
+var boxLinks = document.querySelectorAll('.my-boxes > a');
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Traverse The Tree</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('derp');
+for (var i=0; i &lt; elm.childNodes.length; i++) {
+  console.log(elm.childNodes[i] === elm.childNodes[i].parentNode); // this will always be true
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Traverse The Tree</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('derp');
+var elmsLis = elm.getElementsByTagName('li');
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Adding Elements</h1>
+        </section>
+
+        <section>
+          <h2>Add A Node</h2>
+          <pre><code data-trim contenteditable>
+var movies = document.getElementById('movies');
+var twoTowers = document.createElement('li');
+var twoTowersText = document.createTextNode('The Two Towers');
+twoTowers.appendChild(twoTowersText);
+movies.appendChild(newElm);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Oh No We Forgot About Dre!</h2>
+          <img src='http://everyinstrumental.com/wp-content/uploads/2013/06/Dr+Dre+OUT046332.jpg'>
+        </section>
+
+        <section>
+          <h2>Insert Before</h2>
+          <pre><code data-trim contenteditable>
+//... previous code
+
+// oh no we forgot about dre!
+var fotr = document.createElement('li');
+var fotrText = document.createTextNode('The Fellowship Of The Ring');
+fotr.appendChild(fotrText);
+movies.insertBefore(fotr, twoTowers);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Document Fragments</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('derp');
+var frag = document.createDocumentFragment();
+var newElm = document.createElement('div');
+var anotherElm = document.createElement('p');
+frag.appendChild(newElm);
+frag.appendChild(anotherElm);
+elm.appendChild(frag);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Cloning Nodes</h2>
+          <pre><code data-trim contenteditable>
+// this element takes the form
+// &lt;li&gt;&lt;a&gt;&lt;img&gt;&lt;/a&gt;&lt;/li&gt;
+var aPhoto = document.getElementsByClassName('.photo')[0];
+var aNewPhoto = aPhoto.cloneNode(true);
+var anotherPhoto = aPhoto.cloneNode(true);
+aPhoto.parentNode.appendChild(aNewPhoto);
+aPhoto.parentNode.appendChild(anotherPhoto);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Removing Elements</h1>
+        </section>
+
+        <section>
+          <h2>Removing Nodes</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('derp');
+elm.parentNode.removeChild(elm);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Modifying Attributes</h1>
+        </section>
+
+        <section>
+          <h2>Modifying Attributes</h2>
+          <p>A DOM Node (A JavaScript Object) has the attributes defined in the markup, but it also has other attributes that you can modify on the fly.  You can assign classes dynamically, assign id's dynamically, and more interestingly, alter the style of the node.  These things will trigger a repaint - the DOM element will be recombined with the CSSOM to create a new rendering tree based on these new attributes.</p>
+        </section>
+
+        <section>
+          <h2>Adding / Removing Classes</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('body');
+
+// old school (Big L)
+elm.className = 'needs-to-workout';
+elm.className = '';
+
+// new school (Turn Down For What?)
+if (elm.classList.contains('is-rather-healthy')) {
+  elm.classList.add('needs-to-go-running');
+  elm.classList.remove('is-rather-healthy');
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Modifying The Style</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('box');
+elm.style.position = 'absolute';
+elm.style.top = '10px';
+elm.style.left = '20px';
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Events</h1>
+        </section>
+
+        <section>
+          <h2>Events</h2>
+          <p>So we can add elements, remove elements, style elements... thats all done.  Now what?</p>
+        </section>
+
+        <section>
+          <h2>Events</h2>
+          <p>DOM Events allow us to create interactive pages by reacting to user's behaviour. You can say things like "when you click on this button, turn me blue" or "when you focus on this input, hide the label".</p>
+        </section>
+
+        <section>
+          <h2>How To Listen To Events</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('box');
+elm.onclick = function() {
+  // do something
+};
+elm.addEventListener('click', function(e) {
+  // do something
+}, false);
+elm.attachEvent('onclick', function() {
+  // do something
+  var e = event;
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Events Object</h2>
+          <p>The events object passed as an argument contains information about that specific event.</p>
+          <pre><code data-trim contenteditable>
+function callback(e) {
+  var targ = e.target;
+  var keyCode = e.keyCode;
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Preventing Default Behaviour</h2>
+          <p>Browsers sometimes have default behaviours on certain actions.  You can prevent these by using prevent default.</p>
+          <pre><code data-trim contenteditable>
+function callback(e) {
+  e.preventDefault();
+  return false;
+}
+var links = document.getElementsByTagName('a');
+for (var i=0, j=links.length; i&lt;j; i++) {
+  links[i].addEventListener('click', callback, false);
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Removing Events</h2>
+          <pre><code data-trim contenteditable>
+var elm = document.getElementById('box');
+function callback(e) {
+  // do stuff
+}
+elm.addEventListener('click', callback, false);
+elm.removeEventListener('click', callback);
+elm.attachEvent('onclick', callback);
+elm.detachEvent('onclick', callback);
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Event Bubbling</h1>
+        </section>
+
+        <section>
+          <h2>Event Bubbling</h2>
+          <img src='images/dragonage.png' alt=''>
+        </section>
+
+        <section>
+          <h2>Event Bubbling</h2>
+          <p>When you click on the CTA, you are also clicking on the container that contains both the CTA and the image, and its container, and so forth.. and ultimately, you are clicking on the HTML document.</p>
+          <p>Event bubbling is precisely this, when an event bubbles up all the way to the root element.</p>
+        </section>
+
+        <section>
+          <h2>Ok so, who cares?</h2>
+          <p>Event bubbling can be a major pain in the ass at times.  But more importantly, it can be the source of an extreme optimization.</p>
+        </section>
+
+        <section>
+          <h2>Event Maps</h2>
+          <p>Managing events can be a major pain, and can be really slow.  Listen to the event once on the root, and then based on a data attribute, trigger some callback action.</p>
+        </section>
+
+        <section>
+          <h2>Event Maps</h2>
+          <pre><code data-trim contenteditable>
+var map = {
+  'hero-cta': makeUserBuy
+};
+function makeUserBuy() {}
+function onviewevent(e) {
+  var targ = e.target,
+      trigger = targ.getAttribute('data-trigger');
+  if (trigger &amp;&amp; map[trigger]) {
+     map[trigger]();
+  }
+}
+document.getElementsByTagName('html')[0]
+  .addEventListener('click', onviewevent, false);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Assignment</h2>
+          <p>From the first assignment, write the markup that you created using entirely the DOM.</p>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
