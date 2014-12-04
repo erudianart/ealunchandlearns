@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: High Performance Web Sites</title>
+
+    <meta name="description" content="Origin Lunch And Learn about Web Site Performance">
+    <meta name="author" content="Preet Jassi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>High Performance Web Sites</h1>
+          <h3>Minus The Boring Stuff</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>DOM and Events</li>
+            <li>High Performance Web Sites</li>
+            <li>AngularJS</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Overview</li>
+            <li>The Basics</li>
+            <li>Boring Stuff</li>
+            <li>Images</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/performance">https://github.com/erudianart/ealunchandlearns/performance</a></p>
+        </section>
+
+        <section>
+          <h2>High Performance Web Sites</h2>
+          <p>When you type www.origin.com in a browser and press enter, what happens?</p>
+        </section>
+
+        <section>
+          <h1>Performance: The Basics</h1>
+        </section>
+
+        <section>
+          <h2>Performance: The Basics</h2>
+          <ul>
+            <li>Put your styles in the head</li>
+            <li>Put your scripts in the body</li>
+            <li>Combine your scripts and your styles</li>
+            <li>Minify your scripts and your styles</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Combining / Minifying</h2>
+          <p>You can combine and minfiy your scripts at build time using a build tool, such as grunt.  Alternatively, there are tools out there such as YUICompressor, Google Closure Compiler that you can use to build (and optimize) your code.  There is also an Apache plugin called mod_pagespeed that does some seriously wicked stuff.</p>
+        </section>
+
+        <section>
+          <h1>Performance: The Boring Stuff</h1>
+        </section>
+
+        <section>
+          <h2>Performance: The Boring Stuff</h2>
+          <p>How do you solve all performance problems in Computing Science?  Throw a cache infront of it.</p>
+          <ul>
+            <li>Use a CDN</li>
+            <li>Add an Expires Header</li>
+            <li>Use GZip</li>
+            <li>Configure ETags</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Performance: Images</h1>
+        </section>
+
+        <section>
+          <h2>Performance: Images</h2>
+          <ul>
+            <li>Don't use images</li>
+            <li>Sprite images (such as icons)</li>
+            <li>Even better, use an iconfont</li>
+            <li>Delay load images (<a href="http://www.indochino.com/collection/winter/lookbook">Example here</a>)</li>
+            <li>Responsive.. whaaa???</li>
+            <li>Advanced: use data-uris for small images</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Performance: Responsive Images</h2>
+          <ul>
+            <li>Media Queries + Background Image</li>
+            <li>JavaScript (picture element polyfill)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Performance: Media Queries</h2>
+          <pre><code data-trim contenteditable>
+div {
+  background:url(normal.jpg);
+}
+@media screen and (max-width: 480px) {
+  div {
+    background:url(iphone.jpg);
+  }
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Performance: Picture Element</h2>
+          <pre><code data-trim contenteditable>
+&lt;picture&gt;
+   &lt;source media="(min-width: 64em)" src="high-res.jpg"&gt;
+   &lt;source media="(min-width: 37.5em)" src="med-res.jpg"&gt;
+   &lt;source src="low-res.jpg"&gt;
+   &lt;img src="fallback.jpg" alt="This picture loads on non-supporting browsers."&gt;
+   &lt;p&gt;Accessible text.&lt;/p&gt;
+&lt;/picture&gt;
+        </code></pre>
+      </section>
+        <section>
+          <h1>Performance: CSS</h1>
+        </section>
+
+        <section>
+          <h2>Performance: CSS</h2>
+          <ul>
+            <li>Fight the FOUT! data-uri your @font-face</li>
+            <li>KISS: Keep your selectors small and simple</li>
+            <li>Use CSS (not images or JavaScript)</li>
+            <li>Try to not go drop shadow crazy</li>
+            <li>transform:translate3d(0,0,0)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Performance: FOUT</h2>
+          <pre><code data-trim contenteditable>
+@font-face {
+    font-family: 'ProximaNova';
+    src: url(data:font/woff;charset=utf-8;base64,
+    d09GRgABAAAAAQyPAA4AAAACESAA...) format('woff');
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h1>Performance: JavaScript</h1>
+        </section>
+
+        <section>
+          <h2>Performance: JavaScript</h2>
+          <ul>
+            <li>Don't touch the DOM</li>
+            <li>Use class names</li>
+            <li>Event delegation</li>
+            <li>innerHTML</li>
+            <li>Array.join()</li>
+            <li>Cache everything</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Don't Touch Me</h2>
+          <pre><code data-trim contenteditable>
+var con = document.getElementById('con');
+con.style.color = 'blue';
+var newElm = document.createElement('div');
+newElm.style.color = 'pink';
+con.appendChild(newElm);
+var anotherElm = document.createElement('div');
+anotherElm.style.color = 'burple';
+con.appendChild(anotherElm);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Don't Touch Me</h2>
+          <pre><code data-trim contenteditable>
+var con = document.getElementById('con');
+var newElm = document.createElement('div');
+var anotherElm = document.createElement('div');
+
+con.style.color = 'blue';
+newElm.style.color = 'pink';
+anotherElm.style.color = 'burple';
+
+con.appendChild(newElm);
+con.appendChild(anotherElm);
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Use Class Names</h2>
+          <pre><code data-trim contenteditable>
+var con = document.getElementById('con');
+
+con.style.fontSize = '12px';
+con.style.color = 'blue';
+con.style.position = 'relative';
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Use Class Names</h2>
+          <pre><code data-trim contenteditable>
+var con = document.getElementById('con');
+con.classList.add('is-active');
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Event Delegation</h2>
+          <p>Events propagate up to the root element.  Instead of managing individual events, listen to the event on the root element.</p>
+        </section>
+
+        <section>
+          <h2>Event Delegation</h2>
+          <pre><code data-trim contenteditable>
+(function() {
+  var MyModule = {
+    eventMap: {
+      'buy-trigger': this.buyStuff
+    },
+    buyStuff: function() {},
+    onviewevent: function(e) {
+      var targ = e.target,
+          triggers = targ.getAttribute('data-triggers').split(' '),
+          len = triggers.length;
+      while (len--) {
+        if (this.eventMap[triggers[len]]) {
+          this.eventMap[triggers[len]].call(this, e);
+        }
+      }
+    }
+  };
+  Y.on('onviewevent', MyModule.onviewevent);
+});
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Cache everything</h2>
+          <p>Certain calls trigger reflows, (such as offsetWidth).  If you can, cache any values that you use more than once to prevent multiple reflows.</p>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
