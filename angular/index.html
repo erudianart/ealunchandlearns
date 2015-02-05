@@ -66,11 +66,9 @@
           <h2>Agenda</h2>
           <ol>
             <li>Overview</li>
-            <li>The Basics</li>
-            <li>Boring Stuff</li>
-            <li>Images</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
+            <li>Controllers</li>
+            <li>Directives</li>
+            <li>Factories</li>
           </ol>
         </section>
 
@@ -109,7 +107,7 @@ window.onload = function() {
         <section>
           <h2>The New World</h2>
           <pre><code data-trim contenteditable>
-&lt;input type="text" id="input" value="" ng-model="name" name="name"&gt;
+&lt;input type="text" ng-model="name" &gt;
 &lt;p&gt;Hello &lt;span id="name"&gt;{{name}}&lt;/span&gt;&lt;/p&gt;
           </code></pre>
           <a href="http://plnkr.co/edit/bSGoElS17ni7tfo1UuLB">plnkr</a>
@@ -131,7 +129,7 @@ window.onload = function() {
         </section>
 
         <section>
-          <h2>Google Translate</h2>
+          <h2>Translated</h2>
           <ul>
             <li>Controllers</li>
             <li>Directives</li>
@@ -173,17 +171,23 @@ angular.module('ea')
 
         <section>
           <h2>$scope</h2>
-          <p>$scope is the shared context between controllers and views.  You can access any variables or methods defined in the $scope in the view.</p>
+          <ul>
+            <li>Shared context between controllers and views</li>
+            <li>Anything added to $scope in controller can be accessed in view</li>
+          </ul>
         </section>
 
         <section>
           <h2>Data Binding</h2>
-          <p>Angular offers one way and two way data binding.  In two way data binding, the value in the view can update the value in the controller, and vice-versa.  In one way data binding, the value in the controller can update the value in the view.</p>
+          <ul>
+            <li>One way data binding: controller can update view</li>
+            <li>Two way data binding: view can update controller and controller can update view</li>
+          </ul>
         </section>
 
         <section>
-          <h2>So whats good about controllers?</h2>
-          <p>You can create as may controllers as you want, and nest them! Modularity!</p>
+          <h2>So whats great about controllers?</h2>
+          <!--<p>You can create as may controllers as you want, and nest them! Modularity!</p>-->
         </section>
 
         <section>
@@ -193,11 +197,12 @@ angular.module('ea')
 
         <section>
           <h2>Hold your Horses, What is going on?</h2>
+          <!--<p>How does ListCtrl have access to MainCtrl's variables? </p>-->
         </section>
 
         <section>
           <h2>$scope inheritence</h2>
-          <p>How does ListCtrl have access to MainCtrl's variables? $scope's inherit from one another, using ... prototypical inheritence!</p>
+          <p>$scope's inherit from one another, using prototypical inheritence!</p>
         </section>
 
         <section>
@@ -206,7 +211,8 @@ angular.module('ea')
 
         <section>
           <h2>Directives</h2>
-          <p>Directives are perhaps the most important feature of angular.  Directives allow for code reuse in a very convienient way.</p>
+          <!--<p>Directives are perhaps the most important feature of angular.</p>-->
+          <p>Directives allow for code reuse in a very convienient way.</p>
           <p><a href="http://plnkr.co/edit/dtUxtmhEnC2L1D1sp8Iu?p=preview">plnk me</a></p>
         </section>
 
@@ -233,7 +239,13 @@ angular.module('ea')
 
         <section>
           <h2>restrict</h2>
-          <p>restrict lets angular know how this directive can be used, as a tag name (E), class name (C) or an attribute (A).  In Origin X, we use tag name directives heavily, but attribute directives are extremely important.  If your directive has a template, you should probably use a tag name.  If your directive adds behaviour, use an attribute.</p>
+          <p>lets angular know how this directive can be used<p>
+          <ul>
+            <li>tag name (E)</li>
+            <li>class name (C)</li>
+            <li>attribute (A)</li>
+          </ul>
+          <!--<p>In Origin X, we use tag name directives heavily, but attribute directives are extremely important.  If your directive has a template, you should probably use a tag name.  If your directive adds behaviour, use an attribute.</p>-->
         </section>
 
         <section>
@@ -243,7 +255,11 @@ angular.module('ea')
 
         <section>
           <h2>Isolated Scope</h2>
-          <p>An isolated scope inherits from $rootScope (the top most scope), and does not have any inherited values.  This means that in order to pass information down to the scope of the directive, we have to explicitly do so using the scope option in the directive declaration.</p>
+          <ul>
+            <li>Does not have any inherited values</li>
+            <li>Have to pass down information explicitly</li>
+          </ul>
+          <!--<p>An isolated scope inherits from $rootScope (the top most scope), and does not have any inherited values.  This means that in order to pass information down to the scope of the directive, we have to explicitly do so using the scope option in the directive declaration.</p> -->
         </section>
 
         <section>
@@ -268,17 +284,28 @@ scope: {
 
         <section>
           <h2>template</h2>
-          <p>A directive can have a template, that is, some markup associated with it.  If the template is small, you can inline it into the directive declaration using template.  If the template is larger, put it into its own html file and reference it using templateUrl.  If a directive has a template, I suggest using a element name based directive.</p>
+          <ul>
+            <li>A directive can have a template, that is, some markup associated with it.</li>
+            <li>use template for small templates</li>
+            <li>for larger templates, use templateUrl and an external file</li>
+          </ul>
+          <!--<p>If a directive has a template, I suggest using a element name based directive.</p>-->
         </section>
 
         <section>
           <h2>controller</h2>
-          <p>A directive can optionally have a controller associated with it.  The value for the controller attribute in the directive declaration is the name of the controller.  In Origin X, almost all directives have controllers.  In the controller, we place all of our data for the view, as well as any view based logic.</p>
+          <ul>
+            <li>A directive can optionally have a controller associated with it.</li>
+            <li>Controller gets executed when the directive is compiled</li>
+            <li>Pass controller name ot directive declaration</li>
+          </ul>
+            <!--<p>In Origin X, almost all directives have controllers.  In the controller, we place all of our data for the view, as well as any view based logic.</p>-->
         </section>
 
         <section>
           <h2>link</h2>
-          <p>A link function gets executed after the element has been compiled. Notice that you get a reference to a scope, the element, and the attributes.  Though this is a bit confusing, the best practice is to put any DOM manipulations into the link function of a directive, and put any state based logic into the controller.</p>
+          <p>A link function gets executed after the element has been compiled. Notice that you get a reference to a scope, the element, and the attributes.</p>
+          <!--<p>Though this is a bit confusing, the best practice is to put any DOM manipulations into the link function of a directive, and put any state based logic into the controller.</p>-->
         </section>
 
         <section>
@@ -292,18 +319,34 @@ scope: {
 
         <section>
           <h2>Transclusion</h2>
-          <p>In Origin X, we nest our components, so that there is a heirarchy of components.  This enables us to plug and play components easily, and create cool new layouts with data driven from the CMS.  In fact, it enables us to create an XML representation of our application with data embedded, that in the future can be used as a middle layer to build the application in any language!</p>
+          <p>Transclusion is the ability to nest directives to create a heirarchy of components.</p>
+          <!--<p>In Origin X, we use transclusion heavily.  The heirarchy of tags is actually just XML.  Using this XML we can describe the layout of our page in a semantic manner, with some data (localizaiton data) embedded.  This creates a language agnostic middle layer, that eventually could be used to create Origin 11 - in Swift!</p>-->
           <p><a href="http://plnkr.co/edit/3PF744P8zQkrW9R6SnCa">plnk!</a></p>
         </section>
 
         <section>
           <h2>Transcluded Scope</h2>
-          <p>When you transclude directives, a transcluded scope is created.  This scope inherits from its parent, and applies to the transcluded elements of the directive.  However, if the directive has an isolated scope, then the directive itself will have an isolated scope, but not its transcluded children (they have the transcluded scope)</p>
+          <p>When you transclude directives, a transcluded scope is created.  This scope inherits from its parent, and applies to the transcluded elements of the directive.</p>
+        </section>
+
+        <section>
+          <h2>Transcluded Scope and Isoalted Scope</h2>
+          <p>However, if the directive has an isolated scope, then the directive itself will have an isolated scope, but not its transcluded children (they have the transcluded scope)</p>
           <p><a href="http://plnkr.co/edit/h6YWzb1BkKVA62kOVrZO">plnk!</a></p>
         </section>
 
         <section>
           <h1>Factories</h1>
+        </section>
+
+        <section>
+          <h2>Factories/Services/Providers</h2>
+          <ul>
+            <li>Singletons that differ in how they are instantiated.</li>
+            <li>Can be "injected" into controllers</li>
+            <li>Should contain utility functions, reused logic across controllers, and the majority of the business logic</li>
+          </ul>
+          <p><a href="http://plnkr.co/edit/tKFZjrG0QnXFKAKidZki">plnk!</a></p>
         </section>
 
         <section>
