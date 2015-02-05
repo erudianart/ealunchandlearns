@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Origin Lunch And Learn: Angularjs</title>
+
+    <meta name="description" content="Origin Lunch And Learn about AngularJS">
+    <meta name="author" content="Preet Jassi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>Angular JS</h1>
+          <h3>Get ready for Origin X</h3>
+          <p>
+            <small>Preet Jassi / <a href="mailto:pjassi@ea.com">pjassi@ea.com</a></small>
+          </p>
+        </section>
+
+        <section>
+          <h2>Origin Lunch And Learns</h2>
+          <ol>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>DOM and Events</li>
+            <li>High Performance Web Sites</li>
+            <li>AngularJS</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Agenda</h2>
+          <ol>
+            <li>Overview</li>
+            <li>The Basics</li>
+            <li>Boring Stuff</li>
+            <li>Images</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Grab the code</h2>
+          <p>You can view the code on github <a href="https://github.com/erudianart/ealunchandlearns/angular">https://github.com/erudianart/ealunchandlearns/angular</a></p>
+        </section>
+
+        <section>
+          <h1>AngularJS: Overview</h1>
+        </section>
+
+        <section>
+          <h2>What is Angular</h2>
+          <p>Angular is a JavaScript framework that is designed to ease the creation of highly dynamic websites.</p>
+        </section>
+
+        <section>
+          <h2>The Old World</h2>
+          <pre><code data-trim contenteditable>
+&lt;input type="text" id="input" value="" name="name"&gt;
+&lt;p&gt;Hello &lt;span id="name"&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;script type='text/javascript'&gt;
+window.onload = function() {
+  var input = document.getElementById('input'),
+      nameBox = document.getElementById('name');
+  input.addEventListener('change', function() {
+    nameBox.innerHTML = input.value;
+  });
+};
+&lt;/script&gt;
+          </code></pre>
+          <a href="http://plnkr.co/edit/9BEuBFWiTsthvMIOWPBf?p=preview">plnkr</a>
+        </section>
+
+        <section>
+          <h2>The New World</h2>
+          <pre><code data-trim contenteditable>
+&lt;input type="text" id="input" value="" ng-model="name" name="name"&gt;
+&lt;p&gt;Hello &lt;span id="name"&gt;{{name}}&lt;/span&gt;&lt;/p&gt;
+          </code></pre>
+          <a href="http://plnkr.co/edit/bSGoElS17ni7tfo1UuLB">plnkr</a>
+        </section>
+
+        <section>
+          <h2>Angular is much more</h2>
+          <p>Angular JS is much more than just a framework that provides some DOM niceties, it is a framework that helps to construct rich web applications.</p>
+        </section>
+
+        <section>
+          <h2>Angular enforces</h2>
+          <ul>
+            <li>Modularity</li>
+            <li>Code Reuse</li>
+            <li>MVC</li>
+            <li>Loose Coupling</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Google Translate</h2>
+          <ul>
+            <li>Controllers</li>
+            <li>Directives</li>
+            <li>$scope</li>
+            <li>Dependency Injection (factories)</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Controllers</h1>
+        </section>
+
+        <section>
+          <h2>Controllers</h2>
+          <p>A controller allows you to manipulate the state and data associated with the view without having any of the overhead of DOM manipulation.</p>
+        </section>
+
+        <section>
+          <h2>How To Define A Controller</h2>
+          <pre><code data-trim contenteditable>
+// you need at least a reference to your application
+// or the module in your applicaiton that you are working on
+angular.module('ea')
+  // to add a controller you then use the .controller method
+  // the .controller method takes the controller name as the first
+  // parameter, and then the callback, or the function that defines
+  // the controller as the second
+  .controller('ControllerNameCtrl', function($scope) {
+    // we are not going to go into detail about dependency injection
+    // here, or scope, we will get into that later
+  });
+          </code></pre>
+          <p>Todo list <a href="http://plnkr.co/edit/8Hma2LcCC42ZVumHZ8dl?p=preview">plnkr</a></p>
+        </section>
+
+        <section>
+          <h2>Hold your Horses, What is going on?</h2>
+        </section>
+
+        <section>
+          <h2>$scope</h2>
+          <p>$scope is the shared context between controllers and views.  You can access any variables or methods defined in the $scope in the view.</p>
+        </section>
+
+        <section>
+          <h2>Data Binding</h2>
+          <p>Angular offers one way and two way data binding.  In two way data binding, the value in the view can update the value in the controller, and vice-versa.  In one way data binding, the value in the controller can update the value in the view.</p>
+        </section>
+
+        <section>
+          <h2>So whats good about controllers?</h2>
+          <p>You can create as may controllers as you want, and nest them! Modularity!</p>
+        </section>
+
+        <section>
+          <h2>Nested Controllers</h2>
+          <p><a href="http://plnkr.co/edit/1dAp7eF10p8RJU0R4IK1">plnk!</a></p>
+        </section>
+
+        <section>
+          <h2>Hold your Horses, What is going on?</h2>
+        </section>
+
+        <section>
+          <h2>$scope inheritence</h2>
+          <p>How does ListCtrl have access to MainCtrl's variables? $scope's inherit from one another, using ... prototypical inheritence!</p>
+        </section>
+
+        <section>
+          <h1>Directives</h1>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>Directives are perhaps the most important feature of angular.  Directives allow for code reuse in a very convienient way.</p>
+          <p><a href="http://plnkr.co/edit/dtUxtmhEnC2L1D1sp8Iu?p=preview">plnk me</a></p>
+        </section>
+
+        <section>
+          <h2>How To Define A Directive</h2>
+          <pre><code data-trim contenteditable>
+angular.module('ea')
+  // to add a directive you then use the .directive method
+  // the .directive method takes the directive name as the first
+  // parameter, and then a function that returns the directive definition
+  // Directive names are normalized
+  .directive('ToDoList', function() {
+    return {
+      restrict: 'AEC',
+      scope: {},
+      controller: 'ToDoListCtrl',
+      link: function(scope, elem, attrs) {},
+      template: 'hello'
+    };
+  });
+          </code></pre>
+          <p>Todo list <a href="http://plnkr.co/edit/8Hma2LcCC42ZVumHZ8dl?p=preview">plnkr</a></p>
+        </section>
+
+        <section>
+          <h2>restrict</h2>
+          <p>restrict lets angular know how this directive can be used, as a tag name (E), class name (C) or an attribute (A).  In Origin X, we use tag name directives heavily, but attribute directives are extremely important.  If your directive has a template, you should probably use a tag name.  If your directive adds behaviour, use an attribute.</p>
+        </section>
+
+        <section>
+          <h2>scope</h2>
+          <p>You can choose to have the inherit values from its parent, or have an isolated scope.</p>
+        </section>
+
+        <section>
+          <h2>Isolated Scope</h2>
+          <p>An isolated scope inherits from $rootScope (the top most scope), and does not have any inherited values.  This means that in order to pass information down to the scope of the directive, we have to explicitly do so using the scope option in the directive declaration.</p>
+        </section>
+
+        <section>
+          <h2>scope</h2>
+          <pre><code data-trim contenteditable>
+scope: {
+  // this binds the value of the attribute
+  // text binding to the scope variable textBinding
+  textBinding: '@textbinding',
+  // this binds the variable referenced by
+  // the attribute oneway to the scope variable
+  // oneWay, but, as the name says, it only goes
+  // one way
+  oneWay: '&oneway',
+  // like oneWay, this binds the variable referenced
+  // by the attribute twoway to twoWay, but there is
+  // two way data binding
+  twoWay: '=twoway'
+}
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>template</h2>
+          <p>A directive can have a template, that is, some markup associated with it.  If the template is small, you can inline it into the directive declaration using template.  If the template is larger, put it into its own html file and reference it using templateUrl.  If a directive has a template, I suggest using a element name based directive.</p>
+        </section>
+
+        <section>
+          <h2>controller</h2>
+          <p>A directive can optionally have a controller associated with it.  The value for the controller attribute in the directive declaration is the name of the controller.  In Origin X, almost all directives have controllers.  In the controller, we place all of our data for the view, as well as any view based logic.</p>
+        </section>
+
+        <section>
+          <h2>link</h2>
+          <p>A link function gets executed after the element has been compiled. Notice that you get a reference to a scope, the element, and the attributes.  Though this is a bit confusing, the best practice is to put any DOM manipulations into the link function of a directive, and put any state based logic into the controller.</p>
+        </section>
+
+        <section>
+          <h2>Directives</h2>
+          <p>Lets look at the <a href="http://plnkr.co/edit/8Hma2LcCC42ZVumHZ8dl?p=preview">plnk</a> again</p>
+        </section>
+
+        <section>
+          <h1>Transclusion</h1>
+        </section>
+
+        <section>
+          <h2>Transclusion</h2>
+          <p>In Origin X, we nest our components, so that there is a heirarchy of components.  This enables us to plug and play components easily, and create cool new layouts with data driven from the CMS.  In fact, it enables us to create an XML representation of our application with data embedded, that in the future can be used as a middle layer to build the application in any language!</p>
+          <p><a href="http://plnkr.co/edit/3PF744P8zQkrW9R6SnCa">plnk!</a></p>
+        </section>
+
+        <section>
+          <h2>Transcluded Scope</h2>
+          <p>When you transclude directives, a transcluded scope is created.  This scope inherits from its parent, and applies to the transcluded elements of the directive.  However, if the directive has an isolated scope, then the directive itself will have an isolated scope, but not its transcluded children (they have the transcluded scope)</p>
+          <p><a href="http://plnkr.co/edit/h6YWzb1BkKVA62kOVrZO">plnk!</a></p>
+        </section>
+
+        <section>
+          <h1>Factories</h1>
+        </section>
+
+        <section>
+          <h1>Questions?</h1>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
